@@ -27,11 +27,11 @@ def _select_rm_score_fn(data_source):
         return math.compute_score
     elif "multiply" in data_source or "arithmetic" in data_source:
         return multiply.compute_score
-    elif "countdown" in data_source:
-        return countdown.compute_score
     elif "1a3orn_countdown" in data_source:
         print("ENTRY: countdown_custom")
         return countdown_custom.compute_score
+    elif "countdown" in data_source:
+        return countdown.compute_score
     else:
         raise NotImplementedError
 
