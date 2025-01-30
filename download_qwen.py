@@ -1,8 +1,8 @@
 import transformers
 
-model_name = "Qwen/Qwen2.5-1.5B"
+model_name = "Qwen/Qwen2.5-1.5B-Instruct"
 
-output_path = "./models/Qwen2.5-1.5B"  # Change this to your desired path
+output_path = "./models/Qwen2.5-1.5B-Instruct"  # Change this to your desired path
 
 # Download and save the model
 model = transformers.AutoModelForCausalLM.from_pretrained(model_name)
