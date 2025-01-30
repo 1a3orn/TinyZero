@@ -30,6 +30,7 @@ def _select_rm_score_fn(data_source):
     elif "countdown" in data_source:
         return countdown.compute_score
     elif "1a3orn_countdown" in data_source:
+        print("ENTRY: countdown_custom")
         return countdown_custom.compute_score
     else:
         raise NotImplementedError
