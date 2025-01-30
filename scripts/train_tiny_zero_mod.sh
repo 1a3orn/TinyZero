@@ -1,14 +1,14 @@
 python3 -m verl.trainer.main_ppo \
 data.train_files=$DATA_DIR/all_train.parquet \
 data.val_files=[$DATA_DIR/all_test.parquet,$DATA_DIR/all_off_six_available.parquet,$DATA_DIR/all_off_seven_available.parquet] \
-data.train_batch_size=256 \
+data.train_batch_size=64 \
 data.val_batch_size=1312 \
 data.prompt_key=prompt_text \
 data.max_prompt_length=256 \
-data.max_response_length=256 \
+data.max_response_length=380 \
 actor_rollout_ref.model.path=$BASE_MODEL \
 actor_rollout_ref.actor.optim.lr=1e-6 \
-actor_rollout_ref.actor.ppo_mini_batch_size=128 \
+actor_rollout_ref.actor.ppo_mini_batch_size=32 \
 actor_rollout_ref.actor.ppo_micro_batch_size=8 \
 actor_rollout_ref.rollout.log_prob_micro_batch_size=8 \
 actor_rollout_ref.rollout.tensor_model_parallel_size=$ROLLOUT_TP_SIZE \
