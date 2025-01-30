@@ -1,4 +1,4 @@
-python3 -m verl.trainer.main_ppo \
+python3 -m verl.trainer.main_grpo \
 algorithm.adv_estimator=grpo \
 data.train_files=$DATA_DIR/all_train.parquet \
 data.val_files=[$DATA_DIR/all_test.parquet,$DATA_DIR/all_off_six_available.parquet,$DATA_DIR/all_off_seven_available.parquet] \
