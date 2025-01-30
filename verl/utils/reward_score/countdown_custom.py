@@ -16,8 +16,11 @@ def extract_solution(solution_str):
     answer_pattern = r'<answer>(.*?)</answer>'
     match = re.finditer(answer_pattern, solution_str)
     matches = list(match)
+    print("\n\nMatches\n\n", matches)
     if matches:
         final_answer = matches[-1].group(1).strip()
+        if "=" in final_answer:
+            final_answer = final_answer.split("=")[0].strip()
     else:
         final_answer = None
     return final_answer
