@@ -142,7 +142,7 @@ class RLHFDataset(Dataset):
         row_dict['position_ids'] = position_ids[0]
 
         # encode prompts without chat template
-        if self.return_raw_chat:v
+        if self.return_raw_chat:
             row_dict['raw_prompt'] = chat.tolist()
 
         # add index for each prompt
