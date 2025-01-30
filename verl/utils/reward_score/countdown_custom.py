@@ -97,7 +97,7 @@ def compute_score(solution_str, ground_truth, method='strict', format_score=0.1,
             
         if abs(result - target) < 1e-5:  # Account for floating point precision
             if do_print:
-                print(f"Correct equation: {equation} = {result}")
+                print(f"\n\n\n\nCorrect equation: {equation} = {result}")
             return score
         else:
             if do_print:
