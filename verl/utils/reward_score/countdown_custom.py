@@ -84,6 +84,8 @@ def compute_score(solution_str, ground_truth, method='strict', format_score=0.1,
     # Validate equation uses correct numbers
     if not validate_equation(equation, numbers):
         if do_print:
+            print("Eqauation", equation)
+            print("Numbers", numbers)
             print(f"Invalid equation")
         return format_score
         
