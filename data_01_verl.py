@@ -53,7 +53,7 @@ def main():
     # Define labels and their corresponding file suffixes
     label_map = {
         TRAIN: "train",
-        TEST: "train",
+        TEST: "test",
         OFF_TARGET: "off_target",
         OFF_AVAILABLE_NUMS: "off_available_nums",
         OFF_POSITIVE_NUMBERS: "off_positive_numbers",
