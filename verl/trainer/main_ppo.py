@@ -86,7 +86,6 @@ class RewardManager():
 
             if already_print_data_sources[data_source] < self.num_examine:
                 already_print_data_sources[data_source] += 1
-                print("\n\nsequences_str\n\n")
                 print(sequences_str)
 
         return reward_tensor
@@ -110,9 +109,6 @@ def main(config):
 def main_task(config):
     from verl.utils.fs import copy_local_path_from_hdfs
     from transformers import AutoTokenizer
-    print("ENTRY MAIN TASK")
-    print("\n\n\n\n")
-
     # print initial config
     from pprint import pprint
     from omegaconf import OmegaConf
