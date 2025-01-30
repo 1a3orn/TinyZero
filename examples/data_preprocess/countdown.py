@@ -8,7 +8,7 @@ from datasets import Dataset, load_dataset
 from random import randint, seed, choice
 from typing import List, Tuple
 from tqdm import tqdm
-from verl.utils.hdfs_io import copy, makedirs
+#from verl.utils.hdfs_io import copy, makedirs
 import argparse
 
 
@@ -127,5 +127,6 @@ if __name__ == '__main__':
     test_dataset.to_parquet(os.path.join(local_dir, 'test.parquet'))
 
     if hdfs_dir is not None:
-        makedirs(hdfs_dir)
-        copy(src=local_dir, dst=hdfs_dir) 
+        #makedirs(hdfs_dir)
+        #copy(src=local_dir, dst=hdfs_dir) 
+        pass
