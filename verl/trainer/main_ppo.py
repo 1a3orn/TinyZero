@@ -98,6 +98,7 @@ import hydra
 
 @hydra.main(config_path='config', config_name='ppo_trainer', version_base=None)
 def main(config):
+    print("ENTRY: def main(config)")
     if not ray.is_initialized():
         # this is for local ray cluster
         ray.init(runtime_env={'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN'}})
@@ -196,4 +197,5 @@ def main_task(config):
 
 
 if __name__ == '__main__':
+    print("ENTRY: if __name__ == '__main__'")
     main()

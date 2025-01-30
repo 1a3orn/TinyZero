@@ -1,4 +1,5 @@
 python3 -m verl.trainer.main_ppo \
+algorithm.adv_estimator=grpo \
 data.train_files=$DATA_DIR/all_train.parquet \
 data.val_files=[$DATA_DIR/all_test.parquet,$DATA_DIR/all_off_six_available.parquet,$DATA_DIR/all_off_seven_available.parquet] \
 data.train_batch_size=64 \
@@ -10,10 +11,12 @@ actor_rollout_ref.model.path=$BASE_MODEL \
 actor_rollout_ref.actor.optim.lr=1e-6 \
 actor_rollout_ref.actor.ppo_mini_batch_size=32 \
 actor_rollout_ref.actor.ppo_micro_batch_size=8 \
+actor_rollout_ref.actor.use_kl_loss=True \
 actor_rollout_ref.rollout.log_prob_micro_batch_size=8 \
 actor_rollout_ref.rollout.tensor_model_parallel_size=$ROLLOUT_TP_SIZE \
 actor_rollout_ref.rollout.gpu_memory_utilization=0.4 \
 actor_rollout_ref.ref.log_prob_micro_batch_size=4 \
+actor_rollout_ref.actor.n = 6\
 critic.optim.lr=1e-5 \
 critic.model.path=$BASE_MODEL \
 critic.ppo_micro_batch_size=8 \
