@@ -80,7 +80,6 @@ actor_rollout_ref:
     log_prob_max_token_len_per_gpu: ${actor_rollout_ref.actor.ppo_max_token_len_per_gpu}
     # for hf rollout
     do_sample: True
-    # number of responses (i.e. num sample times)
     n: 1 # > 1 for grpo
 
 critic:
