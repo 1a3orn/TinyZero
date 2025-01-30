@@ -131,7 +131,7 @@ def main_task(config):
         ray_worker_group_cls = RayWorkerGroup
 
     elif config.actor_rollout_ref.actor.strategy == 'megatron':
-        print("ENTRY MEGATRON")
+        raise NotImplementedError
         assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
         from verl.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
         from verl.single_controller.ray.megatron import NVMegatronRayWorkerGroup

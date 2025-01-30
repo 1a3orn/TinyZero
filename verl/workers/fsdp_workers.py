@@ -429,6 +429,8 @@ class ActorRolloutRefWorker(Worker):
             output.meta_info['micro_batch_size'] = self.config.rollout.log_prob_micro_batch_size
             output.meta_info['max_token_len'] = self.config.rollout.log_prob_max_token_len_per_gpu
             output.meta_info['use_dynamic_bsz'] = self.config.rollout.log_prob_use_dynamic_bsz
+            print("ENTRY: output.meta_info['temperature'] = self.config.rollout.temperature")
+            print("ENTRY: self.config.rollout.temperature", self.config.rollout.temperature)
             output.meta_info['temperature'] = self.config.rollout.temperature
             # perform recompute log_prob
             with self.ulysses_sharding_manager:
