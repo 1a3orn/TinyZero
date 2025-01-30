@@ -17,28 +17,18 @@ Note that we don't combine the main with ray_trainer as ray_trainer is used by o
 
 from verl import DataProto
 import torch
-from verl.utils.reward_score import gsm8k, math, multiply, countdown, countdown_custom
+from verl.utils.reward_score import countdown_custom
 from verl.trainer.ppo.ray_trainer import RayPPOTrainer
+from omegaconf import DictConfig
 
 def _select_rm_score_fn(data_source):
-    if data_source == 'openai/gsm8k':
-        return gsm8k.compute_score
-    elif data_source == 'lighteval/MATH':
-        return math.compute_score
-    elif "multiply" in data_source or "arithmetic" in data_source:
-        return multiply.compute_score
-    elif "1a3orn_countdown" in data_source:
-        print("ENTRY: countdown_custom")
+    if "1a3orn_countdown" in data_source:
         return countdown_custom.compute_score
-    elif "countdown" in data_source:
-        return countdown.compute_score
     else:
         raise NotImplementedError
 
 
 class RewardManager():
-    """The reward manager.
-    """
 
     def __init__(self, tokenizer, num_examine) -> None:
         self.tokenizer = tokenizer
@@ -106,10 +96,9 @@ def main(config):
 
 
 @ray.remote
-def main_task(config):
+def main_task(config: DictConfig):
     from verl.utils.fs import copy_local_path_from_hdfs
     from transformers import AutoTokenizer
-    # print initial config
     from pprint import pprint
     from omegaconf import OmegaConf
     pprint(OmegaConf.to_container(config, resolve=True))  # resolve=True will eval symbol values
@@ -124,19 +113,10 @@ def main_task(config):
 
     # define worker classes
     if config.actor_rollout_ref.actor.strategy == 'fsdp':
-        print("ENTRY FSDP")
         assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
         from verl.workers.fsdp_workers import ActorRolloutRefWorker, CriticWorker
         from verl.single_controller.ray import RayWorkerGroup
         ray_worker_group_cls = RayWorkerGroup
-
-    elif config.actor_rollout_ref.actor.strategy == 'megatron':
-        raise NotImplementedError
-        assert config.actor_rollout_ref.actor.strategy == config.critic.strategy
-        from verl.workers.megatron_workers import ActorRolloutRefWorker, CriticWorker
-        from verl.single_controller.ray.megatron import NVMegatronRayWorkerGroup
-        ray_worker_group_cls = NVMegatronRayWorkerGroup
-
     else:
         raise NotImplementedError
 
@@ -167,8 +147,8 @@ def main_task(config):
     if config.reward_model.enable:
         if config.reward_model.strategy == 'fsdp':
             from verl.workers.fsdp_workers import RewardModelWorker
-        elif config.reward_model.strategy == 'megatron':
-            from verl.workers.megatron_workers import RewardModelWorker
+        #elif config.reward_model.strategy == 'megatron':
+        #    from verl.workers.megatron_workers import RewardModelWorker
         else:
             raise NotImplementedError
         role_worker_mapping[Role.RewardModel] = ray.remote(RewardModelWorker)

@@ -71,6 +71,8 @@ def compute_score(solution_str, ground_truth, method='strict', format_score=0.1,
     numbers = ground_truth['numbers']
 
     print("\n\n\n\n--------------------------------")
+    # Remove all <|endoftext|>
+    solution_str = solution_str.replaceAll("<|endoftext|>", "")
     print("Solution str", solution_str)
     print("--------------------------------")
     print("Target", target)
