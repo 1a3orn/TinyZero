@@ -55,6 +55,8 @@ def main(config):
 
     chat_lst = [chat.tolist() for chat in chat_lst]
 
+    print("chat_lst", chat_lst)
+
     tokenizer.padding_side = 'left'
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token

@@ -87,6 +87,7 @@ class RewardManager():
 
             if already_print_data_sources[data_source] < self.num_examine:
                 already_print_data_sources[data_source] += 1
+                print("\n\nsequences_str\n\n")
                 print(sequences_str)
 
         return reward_tensor
