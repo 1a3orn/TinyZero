@@ -125,8 +125,8 @@ class RLHFDataset(Dataset):
 
         chat = row_dict.pop(self.prompt_key)
 
-        prompt_with_chat_template = chat[0]['content']
-        # prompt_with_chat_template = chat
+        prompt_with_chat_template = chat
+        # prompt_with_chat_template = chat[0]['content']
 
         input_ids, attention_mask = verl_F.tokenize_and_postprocess_data(prompt=prompt_with_chat_template,
                                                                          tokenizer=self.tokenizer,
@@ -142,7 +142,7 @@ class RLHFDataset(Dataset):
         row_dict['position_ids'] = position_ids[0]
 
         # encode prompts without chat template
-        if self.return_raw_chat:
+        if self.return_raw_chat:v
             row_dict['raw_prompt'] = chat.tolist()
 
         # add index for each prompt
