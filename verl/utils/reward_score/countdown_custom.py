@@ -18,7 +18,7 @@ def extract_solution(solution_str):
     matches = list(match)
     print("\n\nMatches\n\n", matches)
     if matches:
-        final_answer = matches[-1].group(1).strip()
+        final_answer = matches[0].group(1).strip()
         if "=" in final_answer:
             final_answer = final_answer.split("=")[0].strip()
     else:
