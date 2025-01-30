@@ -1,6 +1,6 @@
 python3 -m verl.trainer.main_ppo \
 data.train_files=$DATA_DIR/all_train.parquet \
-data.val_files=$DATA_DIR/all_test.parquet, $DATA_DIR/all_off_six_available.parquet, $DATA_DIR/all_off_seven_available.parquet
+data.val_files=$DATA_DIR/all_test.parquet, $DATA_DIR/all_off_six_available.parquet, $DATA_DIR/all_off_seven_available.parquet \
 data.train_batch_size=256 \
 data.val_batch_size=1312 \
 data.max_prompt_length=256 \
