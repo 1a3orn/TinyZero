@@ -256,12 +256,14 @@ class ActorRolloutRefWorker(Worker):
         rollout_device_mesh = init_device_mesh('cuda', mesh_shape=(dp, infer_tp), mesh_dim_names=['dp', 'infer_tp'])
 
         if self.config.rollout.name == 'hf':
+            print("ENTRY HFRollout")
             from verl.workers.rollout import HFRollout
             from verl.workers.sharding_manager import BaseShardingManager
             rollout = HFRollout(module=self.actor_module_fsdp, config=self.config.rollout)
             rollout_sharding_manager = BaseShardingManager()
             # TODO: a sharding manager that do nothing?
         elif self.config.rollout.name == 'vllm':
+            print("ENTRY VLLMRollout")
             from verl.workers.rollout.vllm_rollout import vLLMRollout
             from verl.workers.sharding_manager import FSDPVLLMShardingManager
             log_gpu_memory_usage('Before building vllm rollout', logger=None)
